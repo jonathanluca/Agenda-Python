@@ -1,54 +1,54 @@
 def menu():
     voltar_menu = 's'
     while voltar_menu == 's':    
-        opcao = input('''
+        serviços = input('''
             ============================
-            AGENDA
+            \t\tAGENDA\n
             MENU:
             [1]CADASTRAR
-            [2]LISTAR CONTATO
-            [3]DELETAR CONTATO
-            [4]BUSCAR CONTATO
+            [2]LISTAR PRODUTOS
+            [3]DELETAR PRODUTOS
+            [4]BUSCAR PRODUTOS
             [5]SAIR
             ============================
             ESCOLHA UMA OPÇÃO ACIMA: 
             ''')
         
-        if opcao=='1':
-            cadastrar_contato()
-        elif opcao=='2':
-            listar_contato()
-        elif opcao=='3':
-            deletar_conato()
-        elif opcao=='4':
-            buscar_contato()
+        if serviços=='1':
+            cadastrar_produtos()
+        elif serviços=='2':
+            listar_produtos()
+        elif serviços=='3':
+            deletar_produtos()
+        elif serviços=='4':
+            buscar_produtos()
         else:
             sair()
         voltar_menu = input('Deseja retornar para o menu principal? (s/n) ').lower()
         
 
-def cadastrar_contato():
-    id_contato = input('Escolha o ID do seu conato: ')
-    nome = input('Escolha o nome do seu contato: ')
-    tel = input('Escreva so telefone do contato: ')
-    Email = input('Escreva o E-mail do contato: ')
+def cadastrar_produtos():
+    print('Informe o nome do produto de que deseja cadastrar!\n')
+    nome = input('Nome do produto: ')
+    valor = input('Informe o valor do produto: ')
+    quantidade = input('Informe a quantidade: ')
     try:
         agenda = open('Agenda.txt', 'a')
-        dados = f'{id_contato}; {nome}; {tel}; {Email}\n'
+        dados = f'{nome}; {valor}; {quantidade}\n'
         agenda.write(dados)
         agenda.close()
         print(f'Contato gravdo com sucesso!')
     except:
         print('Error na gravação')
 
-def listar_contato():
+def listar_produtos():
     agenda = open('agenda.txt', 'r')
-    for contato in agenda:
-        print(contato)
+    for produtos in agenda:
+        print(produtos)
     agenda.close()
 
-def deletar_conato():
-    nome_deletado = input('Digite o nome que deseja deletar: ').lower()
+def deletar_produtos():
+    produto_deletado = input('Digite o nome que deseja deletar: ').lower()
     agenda = open('agenda.txt', 'r')
     aux =  []
     aux2 = []
@@ -56,25 +56,25 @@ def deletar_conato():
         print(i)
         aux.append(i)
     for i in range(0, len(aux)):
-        if  nome_deletado not in aux[i].lower():
+        if  produto_deletado not in aux[i].lower():
             aux2.append(aux[i])
     agenda = open('agenda.txt', 'w')
     for i in aux2:
         agenda.write(i)
     print(f'Contato deletado com sucesso!')
-    listar_contato()
+    listar_produtos()
     
     
-def buscar_contato():
+def buscar_produtos():
     nome = input(f'Digite o nome que está procurando: ').upper()
     agenda = open('agenda.txt', 'r')
-    for contato in agenda:
-        if nome in contato.split(';')[1].upper():
-            print(contato)
+    for produto in agenda:
+        if nome in produto.split(';')[1].upper():        
+            print(produto)
     agenda.close()
     
 def sair():
-    print(f'Até mais...!')
+    print(f'Obrigado por interagir comigo...!!! \nAté mais...!')
     exit()
 
 def main():
