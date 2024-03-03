@@ -67,10 +67,14 @@ def deletar_produtos():
     
 def buscar_produtos():
     nome = input(f'Digite o nome que está procurando: ').upper()
-    agenda = open('agenda.txt', 'r')
-    for produto in agenda:
-        if nome in produto.split(';')[1].upper():        
-            print(produto)
+    encontrados = False
+    with open('agenda.txt', 'r') as agenda:
+        for produto in agenda:
+            if nome in produto.upper():        
+                print(produto)
+                encontrados = True
+    if not encontrados:
+        print('Nenhum produto encontrado!')
     agenda.close()
     
 def sair():
