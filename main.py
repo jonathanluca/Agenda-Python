@@ -4,34 +4,45 @@ def menu():
         servicos = input('''
             ======================================================
             \t\tMENU BARBEARIA
-            [1] CADASTRAR CORTES
-            [2] DELETAR CORTES
-            [3] CONSULTAR CORTES
-            [4] CADASTRAR PRODUTOS
-            [5] CONSULTAR PRODUTOS
-            [6] DELETAR PRODUTOS
-            [7] SAIR                         
+            [1] TABELA DE VALORES
+            [2] CADASTRAR CORTES
+            [3] DELETAR CORTES
+            [4] CONSULTAR CORTES
+            [5] CADASTRAR PRODUTOS
+            [6] CONSULTAR PRODUTOS
+            [7] DELETAR PRODUTOS
+            [8] SAIR                         
             ======================================================
             ''')
+        
         if servicos == '1':
-            cadastra_cortes ()
+            tabela_valores()
         elif servicos == '2':
-            deletar_cortes ()
+            cadastra_cortes()
         elif servicos == '3':
-            consultar_cortes ()
+            deletar_cortes()
         elif servicos == '4':
-            cadastrar_produtos ()
+            consultar_cortes()
         elif servicos == '5':
-            consultar_produtos ()
+            cadastrar_produtos()
         elif servicos == '6':
-            deletar_produtos ()
+            consultar_produtos()
+        elif servicos == '7':
+            deletar_produtos()
         else:
-            sair ()
+            sair()
         voltar_menu = input('Deseja retornar para o menu principal? (s/n) ').lower()
+
+def tabela_valores():
+    cabelo = 30.00
+    barba = 15
+    pezinho = 10
+    luzes = 40
+    print(f'Cabelo {cabelo}$\n', f'Barba {barba}$\n', f'Pezinho {pezinho}$\n', f'Luzes {luzes}$\n')
         
 def cadastra_cortes ():
-    print('Informe o nome do produto de que deseja cadastrar!\n')
-    nome_cliente = input('Nome do produto: ')
+    print('Informações do cliente!\n')
+    nome_cliente = input('Nome do cliente: ')
     horario = input('Informe o horário que deseja: ')
     try:
         agenda = open('Cadastro corte.txt', 'a')
