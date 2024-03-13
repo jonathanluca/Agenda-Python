@@ -1,3 +1,6 @@
+import requests
+from tkinter import *
+
 def menu():
     voltar_menu = 's'
     while voltar_menu == 's':
@@ -134,11 +137,62 @@ def main ():
     menu()
 main()
 
+janela = Tk()
+janela.title('Barbearia')
 
+tabela_de_valores = Label(janela, text='Consulte a tabela de varlores abaixo')
+tabela_de_valores.grid(column=0, row=0)
+botao_valores = Button(janela, text='Tabela de valores', command=tabela_valores)
+botao_valores.grid(column=0, row=1)
+texto_valores = Label(janela, text='')
+texto_valores.grid(column=0, row=2)
 
-# listar o valores dos serviços
+cadastro_cortes = Label(janela, text='Realize seu cadastro')
+cadastro_cortes.grid(column=0, row=2)
+botao_corte = Button(janela, text='Cadastro cliente', command=cadastra_cortes)
+botao_corte.grid(column=0, row=3)
+texto_cortes = Label(janela, text='')
+texto_cortes.grid(column=0, row=4)
+
+excluir_cortes = Label(janela, text='Deseja excluir um corte?')
+excluir_cortes.grid(column=0, row=4)
+botao_excluir = Button(janela, text='Excluir corte', command=deletar_cortes)
+botao_excluir.grid(column=0, row=5)
+texto_excluir = Label(janela, text='')
+texto_excluir.grid(column=0, row=6)
+
+consulta_de_cortes = Label(janela, text='Consulte seu corte realizado')
+consulta_de_cortes.grid(column=0, row=6)
+botao_consultar = Button(janela, text='Consultar corte', command=consultar_cortes)
+botao_consultar.grid(column=0, row=7)
+texto_consultar = Label(janela, text='')
+texto_consultar.grid(column=0, row=8)
+
+cadastro_de_cortes = Label(janela, text='Cadastro de produtos')
+cadastro_de_cortes.grid(column=0, row=8)
+botao_cadastro_produtos = Button(janela, text='Cadastre um produto', command=cadastrar_produtos)
+botao_cadastro_produtos.grid(column=0, row=9)
+texto_cadastrar_produtos = Label(janela, text='')
+texto_cadastrar_produtos.grid(column=0, row=10)
+
+consulta_de_produtos = Label(janela, text='Consulta de produtos')
+consulta_de_produtos.grid(column=0, row=10)
+botao_consulta_produtos = Button(janela, text='Consulte um produto', command=consultar_produtos)
+botao_consulta_produtos.grid(column=0, row=11)
+texto_consulta_produtos = Label(janela, text='')
+texto_consulta_produtos.grid(column=0, row=12)
+
+excluir_produtos = Label(janela, text='Deletar produtos')
+excluir_produtos.grid(column=0, row=12)
+botao_excluir_produtos = Button(janela, text='Delete um produto', command=deletar_produtos)
+botao_excluir_produtos.grid(column=0, row=13)
+texto_excluir_produtos = Label(janela, text='')
+texto_excluir_produtos.grid(column=0, row=14)
+
+janela.mainloop()
+
     
-    
+# realização das telas
     
     
     
