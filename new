@@ -1,5 +1,6 @@
 from PyQt5 import uic, QtWidgets
 import pandas as pd
+from os import getcwd
 
 def funcao_principal():
     nome = formulario.retorno_nome.text()
@@ -20,10 +21,16 @@ def funcao_principal():
     
     # Salvar os dados em um DataFrame
     dados = {'Nome': [nome], 'Horário': [horario], 'Valor': [valor], 'Categoria': [categoria]}
-    df = pd.DataFrame(data=dados)
+    df_novo = pd.DataFrame(data=dados)
+
+    # Juntar dados
+    path = r'{}/dados.xlsx'
+
+    df_antigo = pd.read_excel(path)
+    df_novo = pd.merge([df_antigo, df_novo])
     
     # Salvar o DataFrame em um arquivo Excel
-    df.to_excel('dados.xlsx')
+    df_novo.to_excel('dados.xlsx')
     print('Dados salvos em dados.xlsx')
 
 app = QtWidgets.QApplication([])
