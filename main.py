@@ -1,5 +1,6 @@
 import requests
 from tkinter import *
+import easygui
 
 def menu():
     voltar_menu = 's'
@@ -21,7 +22,7 @@ def menu():
         if servicos == '1':
             tabela_valores()
         elif servicos == '2':
-            cadastra_cortes()
+            cadastra_cortes_get_user_input()
         elif servicos == '3':
             deletar_cortes()
         elif servicos == '4':
@@ -42,19 +43,29 @@ def tabela_valores():
     pezinho = 10
     luzes = 40
     print(f'Cabelo {cabelo}$\n', f'Barba {barba}$\n', f'Pezinho {pezinho}$\n', f'Luzes {luzes}$\n')
-        
-def cadastra_cortes ():
-    print('Informações do cliente!\n')
-    nome_cliente = input('Nome do cliente: ')
-    horario = input('Informe o horário que deseja: ')
-    try:
-        agenda = open('Cadastro corte.txt', 'a')
-        dados = f'{nome_cliente}; {horario}\n'
-        agenda.write(dados)
-        agenda.close()
-        print(f'Agendamento realizado com sucesso!')
-    except:
-        print('Error no agendamento')
+valores = Button(
+    command=tabela_valores,
+    text='Valores do Corte',
+    font='Arial 15',
+    bd=5,
+    relief='solid'
+)
+valores.pack()
+    
+
+def cadastra_cortes_get_user_input():
+    nome_cliente = easygui.enterbox("Nome do cliente:")
+    horario = easygui.enterbox("Informe o horário que deseja:")
+    return nome_cliente, horario
+       
+cadastro = Button(
+    command=easygui.enterbox(),
+    text='Cadastre o corte',
+    font='Arial 15',
+    bd=5,
+    relief='solid'
+)
+cadastro.pack()
 
 def deletar_cortes ():
     deletar_cortes = input('Digite o nome que deseja deletar: ').lower()
@@ -83,7 +94,7 @@ def consultar_cortes ():
     if not encontrados:
         print('Nenhum cliente encontrado!')
     agenda.close()
-    return cadastra_cortes
+    return cadastra_cortes_get_user_input()
     
 def cadastrar_produtos ():
     print('Informe o nome do produto de que deseja cadastrar!\n')
@@ -149,7 +160,7 @@ texto_valores.grid(column=0, row=2)
 
 cadastro_cortes = Label(janela, text='Realize seu cadastro')
 cadastro_cortes.grid(column=0, row=2)
-botao_corte = Button(janela, text='Cadastro cliente', command=cadastra_cortes)
+botao_corte = Button(janela, text='Cadastro cliente', command=cadastra_cortes_get_user_input())
 botao_corte.grid(column=0, row=3)
 texto_cortes = Label(janela, text='')
 texto_cortes.grid(column=0, row=4)
@@ -190,10 +201,3 @@ texto_excluir_produtos = Label(janela, text='')
 texto_excluir_produtos.grid(column=0, row=14)
 
 janela.mainloop()
-
-    
-# realização das telas
-    
-    
-    
-       
