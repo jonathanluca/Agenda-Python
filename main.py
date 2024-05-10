@@ -1,6 +1,6 @@
-import requests
-from tkinter import *
-import easygui
+# import requests
+# from tkinter import *
+# import easygui
 
 def menu():
     voltar_menu = 's'
@@ -18,24 +18,24 @@ def menu():
             [8] SAIR                         
             ======================================================
             ''')
-        
-        if servicos == '1':
-            tabela_valores()
-        elif servicos == '2':
-            cadastra_cortes_get_user_input()
-        elif servicos == '3':
-            deletar_cortes()
-        elif servicos == '4':
-            consultar_cortes()
-        elif servicos == '5':
-            cadastrar_produtos()
-        elif servicos == '6':
-            consultar_produtos()
-        elif servicos == '7':
-            deletar_produtos()
-        else:
-            sair()
-        voltar_menu = input('Deseja retornar para o menu principal? (s/n) ').lower()
+        match servicos:
+            case '1':
+                return tabela_valores()
+            case '2':
+                return cadastra_cortes()
+            case '3':
+                return deletar_cortes()
+            case '4':
+                return consultar_cortes()
+            case '5':
+                return cadastrar_produtos()
+            case '6':
+                return consultar_produtos()
+            case '7':
+                return deletar_produtos()
+            case _:
+                return print('Valor {} invalido!'.format(servicos))
+    voltar_menu = input('Deseja retornar para o menu principal? (s/n) ').lower()
 
 def tabela_valores():
     cabelo = 30.00
@@ -43,29 +43,9 @@ def tabela_valores():
     pezinho = 10
     luzes = 40
     print(f'Cabelo {cabelo}$\n', f'Barba {barba}$\n', f'Pezinho {pezinho}$\n', f'Luzes {luzes}$\n')
-valores = Button(
-    command=tabela_valores,
-    text='Valores do Corte',
-    font='Arial 15',
-    bd=5,
-    relief='solid'
-)
-valores.pack()
-    
 
-def cadastra_cortes_get_user_input():
-    nome_cliente = easygui.enterbox("Nome do cliente:")
-    horario = easygui.enterbox("Informe o horário que deseja:")
-    return nome_cliente, horario
-       
-cadastro = Button(
-    command=easygui.enterbox(),
-    text='Cadastre o corte',
-    font='Arial 15',
-    bd=5,
-    relief='solid'
-)
-cadastro.pack()
+
+
 
 def deletar_cortes ():
     deletar_cortes = input('Digite o nome que deseja deletar: ').lower()
@@ -94,7 +74,7 @@ def consultar_cortes ():
     if not encontrados:
         print('Nenhum cliente encontrado!')
     agenda.close()
-    return cadastra_cortes_get_user_input()
+    # return cadastra_cortes_get_user_input()
     
 def cadastrar_produtos ():
     print('Informe o nome do produto de que deseja cadastrar!\n')
@@ -148,56 +128,56 @@ def main ():
     menu()
 main()
 
-janela = Tk()
-janela.title('Barbearia')
-
-tabela_de_valores = Label(janela, text='Consulte a tabela de varlores abaixo')
-tabela_de_valores.grid(column=0, row=0)
-botao_valores = Button(janela, text='Tabela de valores', command=tabela_valores)
-botao_valores.grid(column=0, row=1)
-texto_valores = Label(janela, text='')
-texto_valores.grid(column=0, row=2)
-
-cadastro_cortes = Label(janela, text='Realize seu cadastro')
-cadastro_cortes.grid(column=0, row=2)
-botao_corte = Button(janela, text='Cadastro cliente', command=cadastra_cortes_get_user_input())
-botao_corte.grid(column=0, row=3)
-texto_cortes = Label(janela, text='')
-texto_cortes.grid(column=0, row=4)
-
-excluir_cortes = Label(janela, text='Deseja excluir um corte?')
-excluir_cortes.grid(column=0, row=4)
-botao_excluir = Button(janela, text='Excluir corte', command=deletar_cortes)
-botao_excluir.grid(column=0, row=5)
-texto_excluir = Label(janela, text='')
-texto_excluir.grid(column=0, row=6)
-
-consulta_de_cortes = Label(janela, text='Consulte seu corte realizado')
-consulta_de_cortes.grid(column=0, row=6)
-botao_consultar = Button(janela, text='Consultar corte', command=consultar_cortes)
-botao_consultar.grid(column=0, row=7)
-texto_consultar = Label(janela, text='')
-texto_consultar.grid(column=0, row=8)
-
-cadastro_de_cortes = Label(janela, text='Cadastro de produtos')
-cadastro_de_cortes.grid(column=0, row=8)
-botao_cadastro_produtos = Button(janela, text='Cadastre um produto', command=cadastrar_produtos)
-botao_cadastro_produtos.grid(column=0, row=9)
-texto_cadastrar_produtos = Label(janela, text='')
-texto_cadastrar_produtos.grid(column=0, row=10)
-
-consulta_de_produtos = Label(janela, text='Consulta de produtos')
-consulta_de_produtos.grid(column=0, row=10)
-botao_consulta_produtos = Button(janela, text='Consulte um produto', command=consultar_produtos)
-botao_consulta_produtos.grid(column=0, row=11)
-texto_consulta_produtos = Label(janela, text='')
-texto_consulta_produtos.grid(column=0, row=12)
-
-excluir_produtos = Label(janela, text='Deletar produtos')
-excluir_produtos.grid(column=0, row=12)
-botao_excluir_produtos = Button(janela, text='Delete um produto', command=deletar_produtos)
-botao_excluir_produtos.grid(column=0, row=13)
-texto_excluir_produtos = Label(janela, text='')
-texto_excluir_produtos.grid(column=0, row=14)
-
-janela.mainloop()
+# janela = Tk()
+# janela.title('Barbearia')
+#
+# tabela_de_valores = Label(janela, text='Consulte a tabela de varlores abaixo')
+# tabela_de_valores.grid(column=0, row=0)
+# botao_valores = Button(janela, text='Tabela de valores', command=tabela_valores)
+# botao_valores.grid(column=0, row=1)
+# texto_valores = Label(janela, text='')
+# texto_valores.grid(column=0, row=2)
+#
+# cadastro_cortes = Label(janela, text='Realize seu cadastro')
+# cadastro_cortes.grid(column=0, row=2)
+# botao_corte = Button(janela, text='Cadastro cliente', command=cadastra_cortes_get_user_input())
+# botao_corte.grid(column=0, row=3)
+# texto_cortes = Label(janela, text='')
+# texto_cortes.grid(column=0, row=4)
+#
+# excluir_cortes = Label(janela, text='Deseja excluir um corte?')
+# excluir_cortes.grid(column=0, row=4)
+# botao_excluir = Button(janela, text='Excluir corte', command=deletar_cortes)
+# botao_excluir.grid(column=0, row=5)
+# texto_excluir = Label(janela, text='')
+# texto_excluir.grid(column=0, row=6)
+#
+# consulta_de_cortes = Label(janela, text='Consulte seu corte realizado')
+# consulta_de_cortes.grid(column=0, row=6)
+# botao_consultar = Button(janela, text='Consultar corte', command=consultar_cortes)
+# botao_consultar.grid(column=0, row=7)
+# texto_consultar = Label(janela, text='')
+# texto_consultar.grid(column=0, row=8)
+#
+# cadastro_de_cortes = Label(janela, text='Cadastro de produtos')
+# cadastro_de_cortes.grid(column=0, row=8)
+# botao_cadastro_produtos = Button(janela, text='Cadastre um produto', command=cadastrar_produtos)
+# botao_cadastro_produtos.grid(column=0, row=9)
+# texto_cadastrar_produtos = Label(janela, text='')
+# texto_cadastrar_produtos.grid(column=0, row=10)
+#
+# consulta_de_produtos = Label(janela, text='Consulta de produtos')
+# consulta_de_produtos.grid(column=0, row=10)
+# botao_consulta_produtos = Button(janela, text='Consulte um produto', command=consultar_produtos)
+# botao_consulta_produtos.grid(column=0, row=11)
+# texto_consulta_produtos = Label(janela, text='')
+# texto_consulta_produtos.grid(column=0, row=12)
+#
+# excluir_produtos = Label(janela, text='Deletar produtos')
+# excluir_produtos.grid(column=0, row=12)
+# botao_excluir_produtos = Button(janela, text='Delete um produto', command=deletar_produtos)
+# botao_excluir_produtos.grid(column=0, row=13)
+# texto_excluir_produtos = Label(janela, text='')
+# texto_excluir_produtos.grid(column=0, row=14)
+#
+# janela.mainloop()
